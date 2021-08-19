@@ -85,8 +85,8 @@ useEffect(() => {
 
               />
             <DisplayPanel 
-            data={data} 
-            input= {input}
+                data={data} 
+                input= {input}
              />
         </div>  
       ):(

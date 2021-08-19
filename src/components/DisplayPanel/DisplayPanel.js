@@ -5,7 +5,7 @@ import './DisplayPanel.scss';
 export default function DisplayPanel({data,input}) {
   
 const { name, main, wind, weather } = data;
-const { title, checked, show } = input;
+const { title, isChecked, show } = input;
 
     return (
         <div className='displaypanel'>
@@ -19,14 +19,14 @@ const { title, checked, show } = input;
                     <div className='displaypanel__content_info'>
                         <div className='displaypanel__city'>{name}</div>                        
                         {
-                            checked ?                
+                            isChecked ?                
                             <span className='displaypanel__tem'>{celConverter(main.temp)}°</span>:
                             <span className='displaypanel__tem'>{fahConverter(main.temp)}°</span>
                         }
                         { show &&  
-                            <>                        
+                            <div>                        
                                 <span className='displaypanel__text'>Wind</span> <span>{windDirection(wind.deg)} </span><span>{windspeedConverter(wind.speed)}km/h</span>
-                            </>
+                            </div>
                         }
                     </div>
                 </div>                
