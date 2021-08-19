@@ -5,22 +5,43 @@ import { API_URL, API_KEY} from './utils/constants';
 import './App.scss';
 
 function App() {
+
   const [lat, setLat]= useState('');
   const [lon, setLon] = useState('');
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [title, setTitle] = useState('   Title of widget');
-  const [show, setShow] = useState(true);
 
+  const [input, setInput] = useState({
+    title:'  Title of widget',
+    show: true,
+    isChecked: true,
+  });
 
   const changeTitleHandler=(event)=>{
-    setTitle(event.target.value);
+    const updateTitle = {
+      ...input,
+      title:event.target.value,
+    }
+    setInput(updateTitle);
   };
 
   const toggleState = ()=>{
-    setShow(!show);
-  }
+    const toggle = {
+      ...input,
+      show: !input.show,
+    }
+    setInput(toggle);
+  };
+
+  const temperatureScaleChange = (value)=>{
+    const updateScale = {
+      ...input,
+      isChecked: value === "C" ? true : false,
+    }
+    setInput(updateScale);
+  };
+
 
 useEffect(() => {
  const fetchData = async () => {
@@ -59,10 +80,14 @@ useEffect(() => {
             <Controller 
                 changeTitleHandler={changeTitleHandler}
                 toggleState={toggleState}
-                show={show}
-                title={title}
+                onTemperatureScaleChange = {temperatureScaleChange}
+                input = {input}
+
               />
-            <DisplayPanel data={data} title={title} show={show} />
+            <DisplayPanel 
+            data={data} 
+            input= {input}
+             />
         </div>  
       ):(
         <div>Loading...</div>

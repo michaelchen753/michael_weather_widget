@@ -1,9 +1,13 @@
 import React from 'react';
-import { useGlobalContext } from '../../AppContext';
 import './Controller.scss';
 
-export default function Controller({title, changeTitleHandler, toggleState,show}) {
-    const { unit, setUnit } = useGlobalContext();
+export default function Controller({
+    input,
+    changeTitleHandler, 
+    toggleState,
+    onTemperatureScaleChange
+}) {
+    const { title, show, isChecked } = input;
     return (
         <div className='controller'>
             <form>
@@ -17,15 +21,15 @@ export default function Controller({title, changeTitleHandler, toggleState,show}
                 />
                 <div className='controller__toggle_t'>
                     <h4>Temperature</h4>
-                    <div className='controller__input'>
+                    <div onChange = {(e)=>onTemperatureScaleChange(e.target.value)}
+                        className='controller__input'>
                         <div className="controller__input_left">
                             <input 
                                 className='radio'
                                 type="radio" 
                                 value="C" 
                                 name="temperature"                        
-                                checked={unit==='C'}                        
-                                onChange={()=>setUnit('C')}                            
+                                checked={isChecked}       
                             />
                             <label htmlFor='C'> °C</label>
                         </div>
@@ -35,8 +39,7 @@ export default function Controller({title, changeTitleHandler, toggleState,show}
                                 type="radio" 
                                 value="F" 
                                 name="temperature"
-                                checked={unit==='F'}
-                                onChange={()=>setUnit('F')}                            
+                                checked={!isChecked}                                                         
                             />
                             <label htmlFor='F'> °F</label> 
                         </div>
@@ -44,14 +47,14 @@ export default function Controller({title, changeTitleHandler, toggleState,show}
                 </div>
                 <div className='controller__toggle_w'>
                     <h4>Wind</h4>
-                    <div className='controller__input'>
+                    <div  onChange={()=>toggleState()}
+                        className='controller__input'>
                         <div className='controller__input_left'>
                             <input 
                                 className='radio'
                                 type="radio" 
                                 value='On'
-                                name="wind" 
-                                onChange={()=>toggleState()}
+                                name="wind"
                                 checked={show}                                                             
                                 />
                             <label htmlFor='On'> On</label>
@@ -61,7 +64,6 @@ export default function Controller({title, changeTitleHandler, toggleState,show}
                             type="radio" 
                             value='Off' 
                             name="wind"
-                            onChange={()=>toggleState()}
                             checked={!show}                             
                         />
                         <label htmlFor='Off'> Off</label>

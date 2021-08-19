@@ -1,12 +1,11 @@
 import React from 'react';
 import { windDirection, celConverter, fahConverter, windspeedConverter} from '../../utils/converter';
-import { useGlobalContext } from '../../AppContext';
 import './DisplayPanel.scss';
 
-export default function DisplayPanel({data,title, show}) {
+export default function DisplayPanel({data,input}) {
   
-const { unit } = useGlobalContext();    
 const { name, main, wind, weather } = data;
+const { title, checked, show } = input;
 
     return (
         <div className='displaypanel'>
@@ -20,14 +19,14 @@ const { name, main, wind, weather } = data;
                     <div className='displaypanel__content_info'>
                         <div className='displaypanel__city'>{name}</div>                        
                         {
-                            unit ==='C'?                
+                            checked ?                
                             <span className='displaypanel__tem'>{celConverter(main.temp)}°</span>:
                             <span className='displaypanel__tem'>{fahConverter(main.temp)}°</span>
                         }
                         { show &&  
-                            <div>                        
+                            <>                        
                                 <span className='displaypanel__text'>Wind</span> <span>{windDirection(wind.deg)} </span><span>{windspeedConverter(wind.speed)}km/h</span>
-                            </div>
+                            </>
                         }
                     </div>
                 </div>                
