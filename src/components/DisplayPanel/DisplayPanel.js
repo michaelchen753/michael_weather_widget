@@ -2,7 +2,10 @@ import React from 'react';
 import { windDirection, celConverter, fahConverter, windspeedConverter} from '../../utils/converter';
 import './DisplayPanel.scss';
 
-export default function DisplayPanel({data,input}) {
+export default function DisplayPanel({
+    data,
+    input
+}) {
   
 const { name, main, wind, weather } = data;
 const { title, isChecked, show } = input;

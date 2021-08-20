@@ -5,7 +5,7 @@ export default function Controller({
     input,
     changeTitleHandler, 
     toggleState,
-    onTemperatureScaleChange
+    temperatureScaleChange
 }) {
     const { title, show, isChecked } = input;
     return (
@@ -16,12 +16,12 @@ export default function Controller({
                     className='controller__textbox'
                     type='text' 
                     value={title}
-                    onChange={changeTitleHandler}
+                    onChange={(e) => changeTitleHandler(e.target.value)}
                     name='title'                    
                 />
                 <div className='controller__toggle_t'>
                     <h4>Temperature</h4>
-                    <div onChange = {(e)=>onTemperatureScaleChange(e.target.value)}
+                    <div onChange = {(e) => temperatureScaleChange(e.target.value)}
                         className='controller__input'>
                         <div className="controller__input_left">
                             <input 
@@ -36,10 +36,10 @@ export default function Controller({
                         <div className="controller__input_right">
                             <input 
                                 className='radio'
-                                type="radio" 
-                                value="F" 
-                                name="temperature"
-                                checked={!isChecked}                                                         
+                                type = "radio" 
+                                value = "F" 
+                                name = "temperature"
+                                checked = {!isChecked}                                                         
                             />
                             <label htmlFor='F'> °F</label> 
                         </div>
@@ -47,7 +47,7 @@ export default function Controller({
                 </div>
                 <div className='controller__toggle_w'>
                     <h4>Wind</h4>
-                    <div  onChange={()=>toggleState()}
+                    <div  onChange={() => toggleState()}
                         className='controller__input'>
                         <div className='controller__input_left'>
                             <input 
