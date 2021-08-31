@@ -17,7 +17,7 @@ export default function Controller({
                     type='text' 
                     value={title}
                     onChange={(e) => changeTitleHandler(e.target.value)}
-                    name='title'                    
+                    name='title'
                 />
                 <div className='controller__toggle_t'>
                     <h4>Temperature</h4>

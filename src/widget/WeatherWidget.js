@@ -11,7 +11,7 @@ function Container() {
 
   const [lat, setLat] = useState('');
   const [lon, setLon] = useState('');
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -71,7 +71,7 @@ useEffect(() => {
   }
   }   
     fetchData();
-  }, [lat,lon]);
+  }, [lat, lon]);
 
   return (
     <div className = "App">
@@ -80,14 +80,14 @@ useEffect(() => {
       !loading && data.main?(
         <div className = 'App__container'>
             <Controller 
-                changeTitleHandler = {changeTitleHandler}
-                toggleState = {toggleState}
-                temperatureScaleChange = {temperatureScaleChange}
-                input = {input}
+                changeTitleHandler={changeTitleHandler}
+                toggleState={toggleState}
+                temperatureScaleChange={temperatureScaleChange}
+                input={input}
               />
             <DisplayPanel 
-                data = {data} 
-                input = {input}
+                data={data} 
+                input={input}
              />
         </div>  
       ):(
