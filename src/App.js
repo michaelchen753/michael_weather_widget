@@ -1,10 +1,10 @@
 import React from 'react';
-import Container from './Container';
+import WeatherWidget from './widget/WeatherWidget';
 function App() {
 
   return (
     <>
-      <Container />
+      <WeatherWidget />
     </>
   )
 };

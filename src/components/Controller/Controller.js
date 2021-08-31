@@ -7,7 +7,7 @@ export default function Controller({
     toggleState,
     temperatureScaleChange
 }) {
-    const { title, show, isChecked } = input;
+    const { title, show, scale } = input;
     return (
         <div className='controller'>
             <form>
@@ -21,7 +21,7 @@ export default function Controller({
                 />
                 <div className='controller__toggle_t'>
                     <h4>Temperature</h4>
-                    <div onChange = {(e) => temperatureScaleChange(e.target.value)}
+                    <div onChange={(e) => temperatureScaleChange(e.target.value)}
                         className='controller__input'>
                         <div className="controller__input_left">
                             <input 
@@ -29,17 +29,17 @@ export default function Controller({
                                 type="radio" 
                                 value="C" 
                                 name="temperature"                        
-                                checked={isChecked}       
+                                checked={scale === 'C'}       
                             />
                             <label htmlFor='C'> °C</label>
                         </div>
                         <div className="controller__input_right">
                             <input 
                                 className='radio'
-                                type = "radio" 
-                                value = "F" 
-                                name = "temperature"
-                                checked = {!isChecked}                                                         
+                                type="radio" 
+                                value="F" 
+                                name="temperature"
+                                checked={scale === 'F'}                                                         
                             />
                             <label htmlFor='F'> °F</label> 
                         </div>

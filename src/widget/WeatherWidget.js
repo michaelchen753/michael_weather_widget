@@ -1,27 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import Controller from './components/Controller/Controller';
-import DisplayPanel from './components/DisplayPanel/DisplayPanel';
-import { API_URL, API_KEY} from './utils/constants';
-import './App.scss';
+import React, {
+  useState,
+  useEffect
+} from 'react';
+import Controller from '../components/Controller/Controller';
+import DisplayPanel from '../components/DisplayPanel/DisplayPanel';
+import { API_URL, API_KEY} from '../utils/constants';
+import '../App.scss';
 
 function Container() {
 
-  const [lat, setLat]= useState('');
+  const [lat, setLat] = useState('');
   const [lon, setLon] = useState('');
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
   const [input, setInput] = useState({
-    title:'  Title of widget',
+    title: '  Title of widget',
     show: true,
-    isChecked: true,
+    scale: 'C',
   });
 
   const changeTitleHandler = (value) => {
     const updateTitle = {
       ...input,
-      title:value,
+      title: value,
     }
     setInput(updateTitle);
   };
@@ -34,10 +37,10 @@ function Container() {
     setInput(toggle);
   };
 
-  const temperatureScaleChange = (value)=>{
+  const temperatureScaleChange = (value) => {
     const updateScale = {
       ...input,
-      isChecked: value === "C" ? true : false,
+      scale: value 
     }
     setInput(updateScale);
   };

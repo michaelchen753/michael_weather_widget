@@ -1,14 +1,18 @@
 import React from 'react';
-import { windDirection, celConverter, fahConverter, windspeedConverter} from '../../utils/converter';
+import { 
+  windDirection, 
+  celConverter, 
+  fahConverter, 
+  windspeedConverter
+} from '../../utils/converter';
 import './DisplayPanel.scss';
 
 export default function DisplayPanel({
     data,
     input
-}) {
-  
+}) {  
 const { name, main, wind, weather } = data;
-const { title, isChecked, show } = input;
+const { title, scale, show } = input;
 
     return (
         <div className='displaypanel'>
@@ -21,16 +25,14 @@ const { title, isChecked, show } = input;
                     />
                     <div className='displaypanel__content_info'>
                         <div className='displaypanel__city'>{name}</div>                        
-                        {
-                            isChecked ?                
+                        {scale === 'C' ?                
                             <span className='displaypanel__tem'>{celConverter(main.temp)}°</span>:
                             <span className='displaypanel__tem'>{fahConverter(main.temp)}°</span>
                         }
-                        { show &&  
-                            <div>                        
-                                <span className='displaypanel__text'>Wind</span> <span>{windDirection(wind.deg)} </span><span>{windspeedConverter(wind.speed)}km/h</span>
-                            </div>
-                        }
+                         
+                        <div style={{visibility: show ? 'visible' :'hidden'}}>                        
+                            <span className='displaypanel__text'>Wind</span> <span>{windDirection(wind.deg)} </span><span>{windspeedConverter(wind.speed)}km/h</span>
+                        </div>                        
                     </div>
                 </div>                
             </div>
