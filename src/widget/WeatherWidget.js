@@ -11,7 +11,7 @@ function Container() {
 
   const [lat, setLat] = useState('');
   const [lon, setLon] = useState('');
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
